@@ -9,10 +9,7 @@ public class ThirdPersonAirplaneCamera : MonoBehaviour
     private GameObject airplane;
 
     [SerializeField]
-    private float verticalOutput = 4f;
-
-    [SerializeField]
-    private float horizontalOutput = 10f;
+    private CameraConfig config;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +20,7 @@ public class ThirdPersonAirplaneCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, airplane.transform.position - transform.forward * horizontalOutput + transform.up * verticalOutput, 5f * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, airplane.transform.rotation,  5f * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, airplane.transform.position - transform.forward * config.horizontalOffset + transform.up * config.verticalOffset, config.lag * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, airplane.transform.rotation,  config.lag * Time.deltaTime);
     }
 }

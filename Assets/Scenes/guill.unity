@@ -273,8 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   airplane: {fileID: 1029444160}
-  verticalOutput: 4
-  horizontalOutput: 10
+  config: {fileID: 11400000, guid: 6b9512dac052271459afd8211b47176d, type: 2}
 --- !u!1 &1029444160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5739402867714721649, guid: 45d6d43f1be79474ba53dc699f473602,
