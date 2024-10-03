@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412ec09b811a6e741b6070e14d01545f, type: 3}
   m_Name: CameraConfig1
   m_EditorClassIdentifier: 
-  verticalOffset: 4
-  horizontalOffset: 10
-  lag: 1
+  timeOffset: 10
+  posOffset: {x: 0, y: 4, z: -15}

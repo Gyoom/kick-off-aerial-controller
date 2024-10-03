@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CameraConfig", menuName = "My Game/New camera config")]
 public class CameraConfig : ScriptableObject
 {
-    public float verticalOffset = 4f;
-    public float horizontalOffset = 10f;
-    public float lag = 5f;
+    public float timeOffset = 0.05f;
+    public Vector3 posOffset = new Vector3(0f, 4f, -10f);
 }

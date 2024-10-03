@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0879abc70d5859d459ef4a7a4757c168, type: 3}
   m_Name: AirplaneConfig1
   m_EditorClassIdentifier: 
-  flySpeed: 10
-  yawAmount: 30
-  pitchDegree: 20
-  rollDegree: 10
+  flySpeed: 100
+  degreeTurn: 40
+  degreePitch: 60
+  degreeRoll: 30
