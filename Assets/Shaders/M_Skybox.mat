@@ -46,8 +46,8 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _CloudColor: {r: 1, g: 1, b: 1, a: 0}
-    - _CloudSpeed: {r: 0.001, g: 0.001, b: 0, a: 0}
-    - _SkyColor: {r: 0.7028302, g: 0.8576165, b: 1, a: 0}
+    - _CloudSpeed: {r: 0.0005, g: 0.0005, b: 0, a: 0}
+    - _SkyColor: {r: 0.41077787, g: 0.45468697, b: 0.4811321, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8877607650808826058
 MonoBehaviour:

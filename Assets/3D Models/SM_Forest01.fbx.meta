@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: e17e42b0f79ed104ba9cfdd3bfc77f64
+guid: 6342c631a23a66446a70af24e3f782c8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Evergreen.059
+    second: {fileID: 2100000, guid: c06e307f937a68443ac0324d905f59b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
