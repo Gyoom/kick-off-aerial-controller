@@ -1,26 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class AirplaneController : MonoBehaviour
 {
+    [Header("Activation features")]
+    [SerializeField] private bool forwardControl;
+    public bool isStarted = false;
+    public bool canTurn = false;
+
+    [Header("Fly Settings")]
     public AirplaneConfig config;
+
+    [Header("Missiles Settings")]
     [SerializeField] private GameObject missilePrefab;
     [SerializeField] private Transform[] missilePos;
-    [SerializeField] private bool forwardControl;
-    [SerializeField] private float delayCeiling;
 
+    [Header("Death Settings")]
+    [SerializeField] private EndGame gameManager;
+
+    [Header("Infos display")]
     [SerializeField] private Vector3 currentVelocity = Vector3.zero;
 
 
     private float turn;
     private Rigidbody rb;
     private Vector3 velocity = Vector3.zero;
-    public bool ceilingExceed = false;
-    public float timeSinceCeilingExceed = 0;
-
+    private bool ceilingExceed = false;
+    private float timeSinceCeilingExceed = 0;
+    private float delayCeiling = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,55 +43,62 @@ public class AirplaneController : MonoBehaviour
 
     void Update()
     {
-
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        if (forwardControl) // no rotation (edit global pos)
+        if (isStarted)
         {
-            Vector3 direction = new Vector3(horizontalInput, verticalInput, 1);
-            transform.position += direction * config.flySpeed * Time.deltaTime;
-        
-        }
-        else // with rotation (edit local pos)
-        {
-            // mov with edit transform pos, dont worlk with collision
-            transform.position += transform.forward * config.flySpeed * Time.deltaTime;
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
 
-
-            // dont work (shaking) -------------------------
-
-            // rigidbody velocity
-            //rb.velocity = transform.forward * config.flySpeed;
-
-            // smoothdamp
-            //Vector3 targetV = transform.forward * config.flySpeed;
-            //rb.velocity = Vector3.SmoothDamp(rb.velocity, targetV, ref currentVelocity, 1f);
-
-            // rb with lerp
-            //rb.velocity = Vector3.Lerp(rb.velocity, transform.forward * config.flySpeed, Time.deltaTime);
-
-            // addForce
-            //rb.AddForce(transform.forward * 1000 * Time.deltaTime);
-
-            // ------------------------------------
-
-            // airplane rotations
-            turn += horizontalInput * config.degreeTurn * Time.deltaTime;
-            float pitch = Mathf.Lerp(0, config.degreePitch, Mathf.Abs(verticalInput)) * -Mathf.Sign(verticalInput);
-            float roll = Mathf.Lerp(0, config.degreeRoll, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
-
-            transform.localRotation = Quaternion.Euler(Vector3.up * turn + Vector3.right * pitch + Vector3.forward * roll);
-
-            // ceiling delay management
-            
-            if (ceilingExceed)
+            if (forwardControl) // no rotation (edit global pos)
             {
-                timeSinceCeilingExceed += Time.deltaTime;
+                Vector3 direction = new Vector3(horizontalInput, verticalInput, 1);
+                transform.position += direction * config.flySpeed * Time.deltaTime;
+
             }
-            if (timeSinceCeilingExceed > delayCeiling)
+            else // with rotation (edit local pos)
             {
-                ceilingExceed = false;
+                // mov with edit transform pos, dont worlk with collision
+                transform.position += transform.forward * config.flySpeed * Time.deltaTime;
+
+
+                // dont work (shaking) -------------------------
+
+                // rigidbody velocity
+                //rb.velocity = transform.forward * config.flySpeed;
+
+                // smoothdamp
+                //Vector3 targetV = transform.forward * config.flySpeed;
+                //rb.velocity = Vector3.SmoothDamp(rb.velocity, targetV, ref currentVelocity, 1f);
+
+                // rb with lerp
+                //rb.velocity = Vector3.Lerp(rb.velocity, transform.forward * config.flySpeed, Time.deltaTime);
+
+                // addForce
+                //rb.AddForce(transform.forward * 1000 * Time.deltaTime);
+
+                // ------------------------------------
+
+
+                // airplane rotations
+
+                if (canTurn)
+                {
+                    turn += horizontalInput * config.degreeTurn * Time.deltaTime;
+                    float pitch = Mathf.Lerp(0, config.degreePitch, Mathf.Abs(verticalInput)) * -Mathf.Sign(verticalInput);
+                    float roll = Mathf.Lerp(0, config.degreeRoll, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
+
+                    transform.localRotation = Quaternion.Euler(Vector3.up * turn + Vector3.right * pitch + Vector3.forward * roll);
+                }
+
+                // ceiling delay management
+
+                if (ceilingExceed)
+                {
+                    timeSinceCeilingExceed += Time.deltaTime;
+                }
+                if (timeSinceCeilingExceed > delayCeiling)
+                {
+                    ceilingExceed = false;
+                }
             }
         }
     }
@@ -104,23 +124,19 @@ public class AirplaneController : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             Debug.Log("Game Over - Crash on the ground");
-
-            Destroy(gameObject);
-
+            gameManager.Die(gameObject);
         }
 
         if (collision.gameObject.tag == "obstacle")
         {
             Debug.Log("Game Over - Crash on a obstacle");
-
-            Destroy(gameObject);
+            gameManager.Die(gameObject);
         }
 
         if (collision.gameObject.tag == "rocket")
         {
             Debug.Log("Game Over - shot down by a missile");
-
-            //Destroy(gameObject);
+            gameManager.Die(gameObject);
         }
     }
 }
