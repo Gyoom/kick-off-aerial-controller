@@ -11,14 +11,10 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private float delayBeforeCameraMove = 2f;
     [SerializeField] private float delayBeforeAirplaneControl = 1f;
-
-    private CanvasGroup canvasGroup;
+    
+    [SerializeField] private Animator animator;
+    
     private bool isActive = true;
-
-    void Start()
-    {
-        canvasGroup = gameObject.GetComponent<CanvasGroup>();
-    }
 
     public void StartButton()
     {
@@ -32,13 +28,13 @@ public class MainMenu : MonoBehaviour
     public IEnumerator StartTransition()
     {
         airplane.GetComponent<AirplaneController>().isStarted = true;
+        
+        animator.Play("A_TitleScreenFadeOut");
 
         // lerp menu trnasparency
         float time = 0;
         while (time < delayBeforeCameraMove)
         {
-            canvasGroup.alpha = Mathf.Lerp(1, 0, time / delayBeforeCameraMove);
-
             time += Time.deltaTime;
             yield return null;
         };

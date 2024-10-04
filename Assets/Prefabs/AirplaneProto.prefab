@@ -10044,7 +10044,7 @@ MonoBehaviour:
   isStarted: 0
   canTurn: 0
   config: {fileID: 11400000, guid: 1224d8f46f9670846a7955a811c47d74, type: 2}
-  missilePrefab: {fileID: 4715260311414137592, guid: 39b9880cfcf1d934d8c2887c3e1629b9,
+  missilePrefab: {fileID: 2706281528329274345, guid: 9a944d1744f44a2478ae5494d42cffe5,
     type: 3}
   missilePos:
   - {fileID: 0}
@@ -10098,7 +10098,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -1.01}
 --- !u!1 &6719857696274014748
 GameObject:
   m_ObjectHideFlags: 0

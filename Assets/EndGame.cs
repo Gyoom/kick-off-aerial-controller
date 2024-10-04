@@ -47,6 +47,6 @@ public class EndGame : MonoBehaviour
         }
         EndTextUIElement.alpha = 1;
 
-        SceneManager.LoadScene("guill");
+        SceneManager.LoadScene("MZR");
     }
 }

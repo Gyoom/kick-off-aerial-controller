@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 35
   rotationLerpSpeed: 10
-  degreeTurn: 40
+  degreeTurn: 50
   degreePitch: 20
   degreeRoll: 30
