@@ -9,9 +9,12 @@ public class EndGame : MonoBehaviour
     [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private CanvasGroup blackScreenUIElement;
     [SerializeField] private CanvasGroup EndTextUIElement;
+    [SerializeField] private ParticleSystem diePS;
 
     public void Die(GameObject airplane)
     {
+        Instantiate(diePS, airplane.transform.position, Quaternion.identity);
+        
         Destroy(airplane);
         StartCoroutine(Fade());
     }
