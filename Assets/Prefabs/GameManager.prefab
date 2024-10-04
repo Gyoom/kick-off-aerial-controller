@@ -45,4 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 3
-  canvas: {fileID: 0}
+  blackScreenUIElement: {fileID: 0}
+  EndTextUIElement: {fileID: 0}
+  diePS: {fileID: 1876428184543935312, guid: c42a1711715e4ed468395cc55f6ac5cf, type: 3}
