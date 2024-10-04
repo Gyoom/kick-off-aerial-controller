@@ -520,6 +520,24 @@ MonoBehaviour:
   timeLerpPos: 0.1
   timeLerpRot: 0.1
   currentVelocity: {x: 0, y: 0, z: 0}
+--- !u!1 &234462094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8042458233194389233, guid: a4b17716dea4649418011227aca7861d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2060775031162251056}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &234462097
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234462094}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!225 &301210057 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 3252842613658440687, guid: a4b17716dea4649418011227aca7861d,
@@ -1953,6 +1971,16 @@ PrefabInstance:
       propertyPath: airplane
       value: 
       objectReference: {fileID: 1029444160}
+    - target: {fileID: 3542345945921119979, guid: a4b17716dea4649418011227aca7861d,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 186491025}
+    - target: {fileID: 3542345945921119979, guid: a4b17716dea4649418011227aca7861d,
+        type: 3}
+      propertyPath: airplane
+      value: 
+      objectReference: {fileID: 1029444160}
     - target: {fileID: 7736174616363467183, guid: a4b17716dea4649418011227aca7861d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2061,7 +2089,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8042458233194389233, guid: a4b17716dea4649418011227aca7861d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 234462097}
   m_SourcePrefab: {fileID: 100100000, guid: a4b17716dea4649418011227aca7861d, type: 3}
 --- !u!223 &2080683622678332578 stripped
 Canvas:

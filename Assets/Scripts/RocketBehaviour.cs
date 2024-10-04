@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RocketBehaviour : MonoBehaviour
 {
+    [SerializeField] private float timeLerpRot = 0.1f;
+
     private GameObject airplane;
     private float speed;
     private Rigidbody rb;
@@ -16,18 +18,21 @@ public class RocketBehaviour : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
 
         transform.LookAt(airplane.transform);
-        StartCoroutine(SendHoming());
+        StartCoroutine(SendRocket());
     }
 
     // Update is called once per frame
-    public IEnumerator SendHoming()
+    public IEnumerator SendRocket()
     {
         while(airplane != null && Vector3.Distance(airplane.transform.position, transform.position)  > 0.3f)
         {
             Vector3 direction = airplane.transform.position - transform.position;
             direction = direction.normalized;
+            
+            Quaternion airplaneRotation = airplane.transform.rotation;
 
             //transform.position += direction * speed * Time.deltaTime;
+            transform.rotation = Quaternion.Lerp(transform.rotation, airplaneRotation, timeLerpRot);
             rb.velocity = direction * speed;
 
             yield return null;

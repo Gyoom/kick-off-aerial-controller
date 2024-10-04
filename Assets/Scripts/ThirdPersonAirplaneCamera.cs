@@ -7,8 +7,8 @@ public class ThirdPersonAirplaneCamera : MonoBehaviour
 
     [SerializeField] private GameObject airplane;
     [SerializeField] private CameraConfig config;
-    [SerializeField] private float timeLerpPos;
-    [SerializeField] private float timeLerpRot;
+    [SerializeField] private float timeLerpPos = 0.1f;
+    [SerializeField] private float timeLerpRot = 0.1f;
 
     [Header("Infos")]
     [SerializeField] private Vector3 currentVelocity;
@@ -18,9 +18,7 @@ public class ThirdPersonAirplaneCamera : MonoBehaviour
         if (airplane != null) {
             // all directions camera follow
             transform.position = Vector3.Lerp(transform.position, airplane.transform.position + transform.forward * config.posOffset.z + transform.up * config.posOffset.y, timeLerpPos);
-            Quaternion q1 = Quaternion.Euler(airplane.transform.rotation.x, airplane.transform.rotation.y, airplane.transform.rotation.z);
             Quaternion q = airplane.transform.rotation;
-            //q.z = 0;
             transform.rotation = Quaternion.Lerp(transform.rotation, q, timeLerpRot);
 
             // forward camera follow
