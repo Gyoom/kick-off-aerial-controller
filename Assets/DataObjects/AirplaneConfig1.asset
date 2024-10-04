@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0879abc70d5859d459ef4a7a4757c168, type: 3}
   m_Name: AirplaneConfig1
   m_EditorClassIdentifier: 
-  flySpeed: 100
+  flySpeed: 35
+  rotationLerpSpeed: 10
   degreeTurn: 40
-  degreePitch: 60
+  degreePitch: 20
   degreeRoll: 30
