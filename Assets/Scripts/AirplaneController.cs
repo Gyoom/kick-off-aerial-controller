@@ -86,7 +86,9 @@ public class AirplaneController : MonoBehaviour
                     float pitch = Mathf.Lerp(0, config.degreePitch, Mathf.Abs(verticalInput)) * -Mathf.Sign(verticalInput);
                     float roll = Mathf.Lerp(0, config.degreeRoll, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
-                    transform.localRotation = Quaternion.Euler(Vector3.up * turn + Vector3.right * pitch + Vector3.forward * roll);
+                    transform.localRotation = Quaternion.Lerp(transform.localRotation, 
+                        Quaternion.Euler(Vector3.up * turn + Vector3.right * pitch + Vector3.forward * roll), 
+                        Time.deltaTime * config.rotationLerpSpeed);
                 }
 
                 // ceiling delay management
