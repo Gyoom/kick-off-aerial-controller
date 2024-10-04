@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
-    [SerializeField] private float fadeDuration = 3f;
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private float fadeDuration = 2f;
+    [SerializeField] private CanvasGroup blackScreenUIElement;
+    [SerializeField] private CanvasGroup EndTextUIElement;
 
     public void Die(GameObject airplane)
     {
@@ -17,28 +18,32 @@ public class EndGame : MonoBehaviour
 
     public IEnumerator Fade()
     {
-        /*CanvasRenderer CR = canvas.GetComponent<CanvasRenderer>();
-        Image I = canvas.GetComponent<Image>();
+
         float time = 0;
-        //float startValue = CR.a;
+        float startValueAlphaScreen = blackScreenUIElement.alpha;
 
+        float halftDuration = fadeDuration / 2;
 
-        //CR.SetAlpha(1);
-        Color c = I.color;
-        c.a = 255;
-
-        Debug.Log(CR.GetAlpha());
-
-        while (time < fadeDuration)
+        while (time < halftDuration)
         {
-            colorCanvas.a = Mathf.Lerp(startValue, 255, time / fadeDuration);
+            blackScreenUIElement.alpha = Mathf.Lerp(startValueAlphaScreen, 1, time / halftDuration);
 
             time += Time.deltaTime;
             yield return null;
         }
-        colorCanvas.a = 255;*/
+        blackScreenUIElement.alpha = 1;
 
-        yield return new WaitForSeconds(1f);
+        time = 0;
+        float startValueAlphaText = EndTextUIElement.alpha;
+        while (time < halftDuration)
+        {
+            EndTextUIElement.alpha = Mathf.Lerp(startValueAlphaText, 1, time / halftDuration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+        EndTextUIElement.alpha = 1;
+
         SceneManager.LoadScene("guill");
     }
 }

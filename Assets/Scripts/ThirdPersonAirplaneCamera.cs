@@ -16,7 +16,7 @@ public class ThirdPersonAirplaneCamera : MonoBehaviour
     void FixedUpdate()
     {
         if (airplane != null) {
-            // all direction camera follow
+            // all directions camera follow
             transform.position = Vector3.Lerp(transform.position, airplane.transform.position + transform.forward * config.posOffset.z + transform.up * config.posOffset.y, timeLerpPos);
             Quaternion q1 = Quaternion.Euler(airplane.transform.rotation.x, airplane.transform.rotation.y, airplane.transform.rotation.z);
             Quaternion q = airplane.transform.rotation;
