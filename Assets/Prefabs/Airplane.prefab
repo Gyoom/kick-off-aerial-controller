@@ -239,16 +239,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1ca9890cacb6847b0c46eb0a6494b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forwardControl: 0
+  isStarted: 0
+  canTurn: 0
   config: {fileID: 11400000, guid: 1224d8f46f9670846a7955a811c47d74, type: 2}
   missilePrefab: {fileID: 4715260311414137592, guid: 39b9880cfcf1d934d8c2887c3e1629b9,
     type: 3}
   missilePos:
   - {fileID: 0}
   - {fileID: 0}
-  forwardControl: 0
-  delayCeiling: 1
+  gameManager: {fileID: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
-  timeSinceCeilingExceed: 0
 --- !u!54 &5523023312863350140
 Rigidbody:
   m_ObjectHideFlags: 0
