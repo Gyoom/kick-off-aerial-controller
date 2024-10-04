@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 5523023312863350140}
   - component: {fileID: 3080019664076766291}
   m_Layer: 0
-  m_Name: Airplane
+  m_Name: AirplaneProto
   m_TagString: airplane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

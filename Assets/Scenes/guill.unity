@@ -1662,6 +1662,12 @@ PrefabInstance:
       objectReference: {fileID: 1785130399}
     - target: {fileID: 1779841744819621323, guid: 45d6d43f1be79474ba53dc699f473602,
         type: 3}
+      propertyPath: missilePrefab
+      value: 
+      objectReference: {fileID: 2706281528329274345, guid: 9a944d1744f44a2478ae5494d42cffe5,
+        type: 3}
+    - target: {fileID: 1779841744819621323, guid: 45d6d43f1be79474ba53dc699f473602,
+        type: 3}
       propertyPath: missilePos.Array.data[0]
       value: 
       objectReference: {fileID: 64676187}
