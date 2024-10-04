@@ -533,6 +533,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airplane: {fileID: 1029444160}
   config: {fileID: 11400000, guid: 6b9512dac052271459afd8211b47176d, type: 2}
+  timeLerpPos: 0.1
+  timeLerpRot: 0.1
   currentVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &369404186
 GameObject:

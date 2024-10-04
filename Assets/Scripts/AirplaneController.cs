@@ -57,13 +57,13 @@ public class AirplaneController : MonoBehaviour
             else // with rotation (edit local pos)
             {
                 // mov with edit transform pos, dont worlk with collision
-                transform.position += transform.forward * config.flySpeed * Time.deltaTime;
+                //transform.position += transform.forward * config.flySpeed * Time.deltaTime;
 
-
-                // dont work (shaking) -------------------------
 
                 // rigidbody velocity
-                //rb.velocity = transform.forward * config.flySpeed;
+                rb.velocity = transform.forward * config.flySpeed;
+
+                // dont work (shaking) -------------------------
 
                 // smoothdamp
                 //Vector3 targetV = transform.forward * config.flySpeed;
