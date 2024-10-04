@@ -14,7 +14,7 @@ public class RocketBehaviour : MonoBehaviour
     void Start()
     {
         airplane = GameObject.FindGameObjectWithTag("airplane");
-        speed = airplane.GetComponent<AirplaneController>().config.flySpeed * 1.3f;
+        speed = airplane.GetComponent<AirplaneController>().config.flySpeed * 1.5f;
         rb = gameObject.GetComponent<Rigidbody>();
 
         transform.LookAt(airplane.transform);
@@ -27,11 +27,10 @@ public class RocketBehaviour : MonoBehaviour
         while(airplane != null && Vector3.Distance(airplane.transform.position, transform.position)  > 0.3f)
         {
             Vector3 direction = airplane.transform.position - transform.position;
+            direction.x = direction.x / 6;
             direction = direction.normalized;
-            
             Quaternion airplaneRotation = airplane.transform.rotation;
 
-            //transform.position += direction * speed * Time.deltaTime;
             transform.rotation = Quaternion.Lerp(transform.rotation, airplaneRotation, timeLerpRot);
             rb.velocity = direction * speed;
 
