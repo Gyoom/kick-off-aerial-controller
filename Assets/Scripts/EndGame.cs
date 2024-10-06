@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class EndGame : MonoBehaviour
 {
     [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private CanvasGroup blackScreenUIElement;
-    [SerializeField] private CanvasGroup EndTextUIElement;
+    [SerializeField] private CanvasGroup endTextUIElement;
     [SerializeField] private ParticleSystem diePS;
 
     public void Die(GameObject airplane)
@@ -19,17 +17,17 @@ public class EndGame : MonoBehaviour
         StartCoroutine(Fade());
     }
 
-    public IEnumerator Fade()
+    private IEnumerator Fade()
     {
 
         float time = 0;
         float startValueAlphaScreen = blackScreenUIElement.alpha;
 
-        float halftDuration = fadeDuration / 2;
+        float halfDuration = fadeDuration / 2;
 
-        while (time < halftDuration)
+        while (time < halfDuration)
         {
-            blackScreenUIElement.alpha = Mathf.Lerp(startValueAlphaScreen, 1, time / halftDuration);
+            blackScreenUIElement.alpha = Mathf.Lerp(startValueAlphaScreen, 1, time / halfDuration);
 
             time += Time.deltaTime;
             yield return null;
@@ -37,15 +35,15 @@ public class EndGame : MonoBehaviour
         blackScreenUIElement.alpha = 1;
 
         time = 0;
-        float startValueAlphaText = EndTextUIElement.alpha;
-        while (time < halftDuration)
+        float startValueAlphaText = endTextUIElement.alpha;
+        while (time < halfDuration)
         {
-            EndTextUIElement.alpha = Mathf.Lerp(startValueAlphaText, 1, time / halftDuration);
+            endTextUIElement.alpha = Mathf.Lerp(startValueAlphaText, 1, time / halfDuration);
 
             time += Time.deltaTime;
             yield return null;
         }
-        EndTextUIElement.alpha = 1;
+        endTextUIElement.alpha = 1;
 
         SceneManager.LoadScene("MZR");
     }

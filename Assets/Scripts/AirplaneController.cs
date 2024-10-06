@@ -48,36 +48,18 @@ public class AirplaneController : MonoBehaviour
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
 
-            if (forwardControl) // no rotation (edit global pos)
+            if (forwardControl) // Alternative - no rotation (edit global pos)
             {
                 Vector3 direction = new Vector3(horizontalInput, verticalInput, 1);
-                transform.position += direction * config.flySpeed * Time.deltaTime;
+                transform.position += direction * config.flySpeed;
 
             }
             else // with rotation (edit local pos)
             {
-                // mov with edit transform pos, dont worlk with collision
-                //transform.position += transform.forward * config.flySpeed * Time.deltaTime;
-
-
                 // rigidbody velocity
                 rb.velocity = transform.forward * config.flySpeed;
-
-                // dont work (shaking) -------------------------
-
-                // smoothdamp
-                //Vector3 targetV = transform.forward * config.flySpeed;
-                //rb.velocity = Vector3.SmoothDamp(rb.velocity, targetV, ref currentVelocity, 1f);
-
-                // rb with lerp
-                //rb.velocity = Vector3.Lerp(rb.velocity, transform.forward * config.flySpeed, Time.deltaTime);
-
-                // addForce
-                //rb.AddForce(transform.forward * 1000 * Time.deltaTime);
-
-                // ------------------------------------
-
-
+                
+                
                 // airplane rotations
 
                 if (canTurn)
@@ -86,7 +68,8 @@ public class AirplaneController : MonoBehaviour
                     float pitch = Mathf.Lerp(0, config.degreePitch, Mathf.Abs(verticalInput)) * -Mathf.Sign(verticalInput);
                     float roll = Mathf.Lerp(0, config.degreeRoll, Mathf.Abs(horizontalInput)) * -Mathf.Sign(horizontalInput);
 
-                    transform.localRotation = Quaternion.Lerp(transform.localRotation, 
+                    transform.localRotation = Quaternion.Lerp(
+                        transform.localRotation, 
                         Quaternion.Euler(Vector3.up * turn + Vector3.right * pitch + Vector3.forward * roll), 
                         Time.deltaTime * config.rotationLerpSpeed);
                 }
@@ -108,7 +91,7 @@ public class AirplaneController : MonoBehaviour
     // Rocket launcher
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ceiling" && !ceilingExceed && transform.rotation.x < 0)
+        if (other.CompareTag("ceiling") && !ceilingExceed && transform.rotation.x < 0)
         {
             ceilingExceed = true;
             timeSinceCeilingExceed = 0;
@@ -123,19 +106,19 @@ public class AirplaneController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.CompareTag("ground"))
         {
             Debug.Log("Game Over - Crash on the ground");
             gameManager.Die(gameObject);
         }
 
-        if (collision.gameObject.tag == "obstacle")
+        if (collision.gameObject.CompareTag("obstacle"))
         {
             Debug.Log("Game Over - Crash on a obstacle");
             gameManager.Die(gameObject);
         }
 
-        if (collision.gameObject.tag == "rocket")
+        if (collision.gameObject.CompareTag("rocket"))
         {
             Debug.Log("Game Over - shot down by a missile");
             gameManager.Die(gameObject);

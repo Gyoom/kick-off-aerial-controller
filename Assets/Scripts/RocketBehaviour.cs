@@ -22,7 +22,7 @@ public class RocketBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    public IEnumerator SendRocket()
+    private IEnumerator SendRocket()
     {
         while(airplane != null && Vector3.Distance(airplane.transform.position, transform.position)  > 0.3f)
         {
